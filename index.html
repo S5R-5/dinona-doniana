@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ديننا دنيانا</title>
+<script async src="https://cse.google.com/cse.js?cx=41888e1cfaa844df8"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap');
+:root{--gold:#c9a84c;--gold-light:#e8c97a;--gd:#1a3a2a;--gm:#2d5a3d;--gl:#3d7a52;--cream:#faf6f0;--text:#1a1a1a;--muted:#555;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Tajawal',sans-serif;background:var(--cream);color:var(--text);}
+
+/* NAV */
+nav{background:transparent;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;position:fixed;top:0;left:0;right:0;z-index:100;transition:background .35s,box-shadow .35s;}
+nav.scrolled{background:var(--gd);box-shadow:0 2px 12px rgba(0,0,0,.35);}
+nav.solid{background:var(--gd)!important;box-shadow:0 2px 12px rgba(0,0,0,.35);}
+.logo{font-family:'Amiri',serif;color:var(--gold);font-size:1.4rem;font-weight:700;padding:.9rem 0;}
+.nav-links{display:flex;gap:.2rem;list-style:none;flex-wrap:wrap;}
+.nav-links a{color:rgba(255,255,255,.9);text-decoration:none;padding:.45rem .9rem;border-radius:6px;font-size:.9rem;transition:all .2s;cursor:pointer;}
+.nav-links a:hover,.nav-links a.active{background:var(--gm);color:var(--gold-light);}
+
+/* PAGES */
+.page{display:none;}.page.active{display:block;}
+
+/* HERO */
+.hero{background:linear-gradient(180deg,var(--gd) 0%,var(--gm) 60%,var(--gl) 80%,var(--cream) 100%);color:#fff;text-align:center;padding:8rem 2rem 4rem;position:relative;overflow:hidden;}
+.hero-bism{font-family:'Amiri',serif;font-size:1.7rem;color:var(--gold-light);margin-bottom:1.2rem;opacity:.9;}
+.hero h1{font-family:'Amiri',serif;font-size:3.2rem;margin-bottom:.4rem;text-shadow:0 2px 8px rgba(0,0,0,.3);}
+.hero-sub{font-size:1rem;color:var(--gold-light);margin-bottom:1.8rem;font-weight:300;}
+.hero-ayah{font-family:'Amiri',serif;font-size:1.25rem;color:rgba(255,255,255,.85);max-width:580px;margin:0 auto .4rem;line-height:2;}
+.hero-ref{font-size:.82rem;color:var(--gold-light);opacity:.8;}
+
+/* HOME CARDS */
+.services{padding:2.5rem 1.5rem;max-width:860px;margin:0 auto;}
+.sec-title{text-align:center;font-family:'Amiri',serif;font-size:1.7rem;color:var(--gd);margin-bottom:.4rem;}
+.sec-title::after{content:'';display:block;width:55px;height:3px;background:var(--gold);margin:.4rem auto 1.8rem;border-radius:2px;}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.3rem;}
+.card{background:#fff;border-radius:14px;padding:1.8rem 1.3rem;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.07);border:1px solid rgba(201,168,76,.2);cursor:pointer;transition:all .3s;}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(0,0,0,.12);border-color:var(--gold);}
+.card-icon{font-size:2.3rem;margin-bottom:.9rem;}
+.card h3{font-family:'Amiri',serif;font-size:1.2rem;color:var(--gd);margin-bottom:.4rem;}
+.card p{font-size:.88rem;color:var(--muted);line-height:1.6;}
+
+/* ATHKAR PAGE */
+.page-content{max-width:780px;margin:0 auto;padding:1.8rem 1.2rem;}
+.page-header{text-align:center;margin-bottom:1.5rem;}
+.page-header h2{font-family:'Amiri',serif;font-size:1.9rem;color:var(--gd);}
+.page-header p{color:var(--muted);margin-top:.3rem;font-size:.92rem;}
+.intro-box{background:linear-gradient(135deg,var(--gd),var(--gm));color:#fff;border-radius:14px;padding:1.5rem 1.8rem;margin-bottom:1.8rem;text-align:center;}
+.intro-box h3{font-family:'Amiri',serif;font-size:1.4rem;color:var(--gold-light);margin-bottom:.7rem;}
+.intro-box p{font-size:.9rem;line-height:1.8;opacity:.9;}
+.tabs{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:1.8rem;}
+.tab-btn{background:#fff;border:2px solid var(--gm);color:var(--gm);padding:.45rem 1.1rem;border-radius:22px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:.92rem;transition:all .2s;}
+.tab-btn:hover,.tab-btn.active{background:var(--gm);color:#fff;}
+
+/* MOQADIMA */
+.moqadima-box{background:#fff;border-radius:14px;padding:2rem;box-shadow:0 2px 12px rgba(0,0,0,.07);border-right:4px solid var(--gold);}
+.moqadima-text{font-family:'Amiri',serif;font-size:1.18rem;line-height:2.2;color:var(--text);}
+.moqadima-text strong{color:var(--gd);font-size:1.2rem;}
+
+/* ATHKAR CARDS */
+.athkar-list{display:flex;flex-direction:column;gap:1rem;}
+.athkar-card{background:#fff;border-radius:12px;padding:1.4rem;box-shadow:0 2px 10px rgba(0,0,0,.06);border-right:4px solid var(--gold);cursor:pointer;user-select:none;transition:background .15s;}
+.athkar-card:active{background:#f5f5f5;}
+.athkar-card.done-card{border-right-color:#27ae60;background:#f0faf4;}
+.athkar-text{font-family:'Amiri',serif;font-size:1.18rem;line-height:2.1;color:var(--text);margin-bottom:.7rem;pointer-events:none;}
+.athkar-source{font-size:.78rem;color:var(--gl);background:rgba(61,122,82,.08);padding:.2rem .6rem;border-radius:10px;display:inline-block;margin-bottom:.6rem;pointer-events:none;}
+.fadl{font-size:.82rem;color:#7a5a2a;background:#fdf3dc;border-right:3px solid var(--gold);padding:.5rem .8rem;border-radius:6px;margin-bottom:.8rem;line-height:1.7;pointer-events:none;}
+.athkar-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;}
+.repeat-badge{font-size:.8rem;color:var(--gl);background:rgba(45,90,61,.09);padding:.25rem .7rem;border-radius:18px;pointer-events:none;}
+.actions{display:flex;align-items:center;gap:.6rem;}
+.cnt-display{min-width:54px;text-align:center;font-size:1rem;font-weight:700;color:var(--gd);background:#f0f5f0;border-radius:8px;padding:.3rem .6rem;pointer-events:none;}
+.done-badge{font-size:.75rem;color:#27ae60;font-weight:700;background:#eafaf1;padding:.2rem .6rem;border-radius:8px;pointer-events:none;}
+.cnt-reset{font-size:.72rem;color:#999;background:none;border:1px solid #ddd;border-radius:6px;padding:.2rem .5rem;cursor:pointer;font-family:'Tajawal',sans-serif;}
+.cnt-reset:hover{background:#f5f5f5;}
+.copy-btn{background:var(--gd);color:#fff;border:none;padding:.38rem .9rem;border-radius:8px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:.82rem;transition:all .2s;}
+.copy-btn:hover{background:var(--gl);}
+.copy-btn.copied{background:#27ae60;}
+
+/* SEARCH PAGE */
+.search-hero{background:linear-gradient(180deg,var(--gd) 0%,var(--gm) 60%,var(--gl) 80%,var(--cream) 100%);padding:6rem 1.5rem 3rem;text-align:center;}
+.search-hero h2{font-family:'Amiri',serif;font-size:2rem;color:var(--gold-light);margin-bottom:.4rem;}
+.search-hero p{color:rgba(255,255,255,.8);font-size:.92rem;}
+.search-box-wrap{max-width:680px;margin:1.5rem auto 0;display:flex;gap:.6rem;}
+.search-input{flex:1;padding:.85rem 1.2rem;border:none;border-radius:12px;font-family:'Tajawal',sans-serif;font-size:1rem;outline:none;box-shadow:0 4px 20px rgba(0,0,0,.15);}
+.search-btn{background:var(--gold);color:var(--gd);border:none;padding:.85rem 1.5rem;border-radius:12px;font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;white-space:nowrap;}
+.search-btn:hover{background:var(--gold-light);}
+
+
+.filter-section{max-width:900px;margin:2rem auto;padding:0 1.5rem;}
+.filter-title{font-family:'Amiri',serif;font-size:1.2rem;color:var(--gd);margin-bottom:1rem;}
+.sites-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.7rem;margin-bottom:1rem;}
+.site-chip{display:flex;align-items:center;gap:.7rem;background:#fff;border:2px solid #e0e0e0;border-radius:14px;padding:.7rem 1rem;cursor:pointer;transition:all .25s;user-select:none;box-shadow:0 1px 4px rgba(0,0,0,.05);}
+.site-chip:hover{border-color:var(--gm);transform:translateY(-1px);}
+.site-chip.selected{border-color:var(--gm);background:rgba(45,90,61,.05);}
+.site-chip input[type=checkbox]{display:none;}
+.chip-check{width:22px;height:22px;border-radius:50%;border:2px solid #ccc;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;background:#fff;}
+.site-chip.selected .chip-check{background:var(--gm);border-color:var(--gm);}
+.chip-check svg{display:none;width:12px;height:12px;}
+.site-chip.selected .chip-check svg{display:block;}
+.site-chip-label{font-size:.83rem;color:var(--text);line-height:1.3;font-weight:500;}
+.site-chip-label small{display:block;color:var(--muted);font-size:.72rem;}
+.filter-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+.filter-act-btn{background:var(--gm);color:#fff;border:none;padding:.45rem 1rem;border-radius:8px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:.85rem;transition:all .2s;}
+.filter-act-btn:hover{background:var(--gl);}
+.filter-act-btn.outline{background:transparent;border:2px solid var(--gm);color:var(--gm);}
+.filter-act-btn.outline:hover{background:var(--gm);color:#fff;}
+.gcse-results-wrap{max-width:900px;margin:0 auto;padding:0 1.5rem 2rem;}
+.no-results{text-align:center;padding:3rem;color:var(--muted);}
+.no-results .icon{font-size:3rem;margin-bottom:1rem;}
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <div class="logo">ديننا دنيانا</div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" id="nav-home" class="active">الرئيسية</a></li>
+    <li><a onclick="showPage('athkar')" id="nav-athkar">الأذكار</a></li>
+    <li><a onclick="showPage('search')" id="nav-search">البحث الموحد</a></li>
+  </ul>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-bism">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+    <h1>ديننا دنيانا</h1>
+    <div class="hero-sub">موقعك الإسلامي للأذكار والبحث العلمي</div>
+    <div class="hero-ayah">﴿ وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا ﴾</div>
+    <div class="hero-ref">سورة الطلاق - آية 2</div>
+  </div>
+  <div class="services">
+    <h2 class="sec-title">خدماتنا</h2>
+    <div class="cards">
+      <div class="card" onclick="showPage('athkar')">
+        <div class="card-icon">📿</div>
+        <h3>الأذكار والأدعية</h3>
+        <p>أذكار الصباح والمساء الكاملة من تطبيق الشيخ رسلان مع عداد لكل ذكر</p>
+      </div>
+      <div class="card" onclick="showPage('search')">
+        <div class="card-icon">🔍</div>
+        <h3>البحث الموحد</h3>
+        <p>ابحث في مواقع كبار العلماء دفعة واحدة</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ATHKAR -->
+<div id="page-athkar" class="page">
+  <div class="page-content" style="padding-top:5rem;">
+    <div class="page-header">
+      <h2>📿 الأذكار والأدعية</h2>
+      <p>من تطبيق الشيخ رسلان - حفظه الله</p>
+    </div>
+    <div class="intro-box">
+      <h3>🌟 فضل الأذكار</h3>
+      <p>الأذكار حصن المسلم وسلاحه في يومه وليلته، احرص على المداومة عليها صباحاً ومساءً</p>
+    </div>
+    <div class="tabs">
+      <button class="tab-btn active" id="tab-moqadima" onclick="showTab('moqadima',this)">📖 مقدمة الأذكار</button>
+      <button class="tab-btn" onclick="showTab('sabah',this)">🌅 أذكار الصباح</button>
+      <button class="tab-btn" onclick="showTab('masa',this)">🌙 أذكار المساء</button>
+    </div>
+    <div id="moqadima-content">
+      <div class="moqadima-box">
+        <div class="moqadima-text">
+          إِنَّ الْحَمْدَ لِلَّهِ نَحْمَدُهُ، وَنَسْتَعِينُهُ وَنَسْتَغْفِرُهُ، وَنَعُوذُ بِاللَّهِ مِنْ شُرُورِ أَنْفُسِنَا وَمِنْ سَيِّئَاتِ أَعْمَالِنَا، مَنْ يَهْدِهِ اللَّهُ فَلَا مُضِلَّ لَهُ، وَمَنْ يُضْلِلْ فَلَا هَادِيَ لَهُ.<br><br>
+          وَأَشْهَدُ أَنْ لا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لا شَرِيكَ لَهُ. وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ صَلَّى اللَّهُ عَلَيْهِ وَعَلَى آلِهِ وَسَلَّمَ.<br><br>
+          ﴿يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ حَقَّ تُقَاتِهِ وَلَا تَمُوتُنَّ إِلَّا وَأَنْتُمْ مُسْلِمُونَ﴾ [آل عمران: ١٠٢].<br><br>
+          ﴿يَا أَيُّهَا النَّاسُ اتَّقُوا رَبَّكُمُ الَّذِي خَلَقَكُمْ مِنْ نَّفْسٍ وَاحِدَةٍ وَخَلَقَ مِنْهَا زَوْجَهَا وَبَثَّ مِنْهُمَا رِجَالًا كَثِيرًا وَنِسَاءً وَاتَّقُوا اللَّهَ الَّذِي تَسَاءَلُونَ بِهِ وَالْأَرْحَامَ إِنَّ اللَّهَ كَانَ عَلَيْكُمْ رَقِيبًا﴾ [النساء: ١].<br><br>
+          ﴿يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَقُولُوا قَوْلًا سَدِيدًا * يُصْلِحْ لَكُمْ أَعْمَالَكُمْ وَيَغْفِرْ لَكُمْ ذُنُوبَكُمْ وَمَنْ يُطِعِ اللَّهَ وَرَسُولَهُ فَقَدْ فَازَ فَوْزًا عَظِيمًا﴾ [الأحزاب: ٧٠-٧١].<br><br>
+          <strong>أَمَّا بَعْدُ:</strong><br><br>
+          فَإِنَّ أَصْدَقَ الْحَدِيثِ كِتَابُ اللَّهِ، وَخَيْرَ الْهَدْيِ هَدْيُ مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَآلِهِ وَسَلَّمَ، وَشَرَّ الْأُمُورِ مُحْدَثَاتُهَا، وَكُلُّ مُحْدَثَةٍ بِدْعَةٌ، وَكُلَّ بِدْعَةٍ ضَلَالَةٌ، وَكُلُّ ضَلَالَةٍ فِي النَّارِ.<br><br>
+          <strong>أَمَّا بَعْدُ:</strong><br><br>
+          فقد قال الله تعالى: ﴿فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ﴾ [البقرة: ١٥٢].<br><br>
+          فالذِّكرُ يُورِثُ الذاكرَ ذِكْرَ الله تعالى له، ولو لم يكن في الذكر إلا هذه وحدها لكفى بها فضلاً وشرفاً، فكيف والذِّكرُ: يُورِثُ الْمَحَبَّةَ التي هي روح الإسلام، وقُطب رحى الدين، ومدار السعادة والنجاة، ويُورِثُ حياة القلب، والهيبة للرب، ويفتح أبواب المعرفة، ويُورِثُ الإنابة والمراقبة، ويحط الخطايا، ويُزيل الوحشة بين العبد وربه تبارك وتعالى، وهو غراس الجنة.... إلى غير ذلك من فوائد الذِّكْرِ التي ذكرها العلامة ابن القيم رحمه الله في كتابه الجليل: (الوابل الصيب).
+        </div>
+      </div>
+    </div>
+    <div id="athkar-content" class="athkar-list" style="display:none;"></div>
+  </div>
+</div>
+
+<!-- SEARCH -->
+<div id="page-search" class="page">
+  <div class="search-hero">
+    <h2>🔍 البحث الموحد</h2>
+    <p>ابحث في مواقع كبار العلماء في آنٍ واحد</p>
+    <div class="search-box-wrap">
+      <input class="search-input" id="searchInput" type="text" placeholder="اكتب كلمة البحث هنا..." onkeydown="if(event.key==='Enter') doSearch()">
+      <button class="search-btn" onclick="doSearch()">بحث 🔍</button>
+    </div>
+  </div>
+  <div class="filter-section">
+    <div class="filter-title">📚 اختر المواقع للبحث فيها</div>
+    <div class="sites-grid" id="sitesGrid"></div>
+    <div class="filter-actions">
+      <button class="filter-act-btn" onclick="selectAll()">✅ تحديد الكل</button>
+      <button class="filter-act-btn outline" onclick="deselectAll()">❌ إلغاء الكل</button>
+    </div>
+  </div>
+  <div class="gcse-results-wrap">
+    <div class="gcse-searchresults-only" id="gscResults"></div>
+  </div>
+</div>
+
+<footer style="background:#1a3a2a;color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.85rem;width:100%;display:block;">
+  جميع الحقوق محفوظة © 2025 &nbsp;|&nbsp; <span style="color:#e8c97a;">ديننا دنيانا</span>
+</footer>
+
+<script>
+/* ===== SITES ===== */
+const sites=[
+  {id:'ferkous',    name:'الشيخ فركوس',           sub:'حفظه الله'},
+  {id:'badr',       name:'الشيخ عبد الرزاق البدر', sub:'حفظه الله'},
+  {id:'rslan',      name:'الشيخ رسلان',             sub:'حفظه الله'},
+  {id:'fawzan1',    name:'الشيخ الفوزان',           sub:'هيئة كبار العلماء'},
+  {id:'fawzan2',    name:'الشيخ الفوزان',           sub:'الموقع الرسمي'},
+  {id:'binbaz',     name:'الشيخ ابن باز',            sub:'رحمه الله'},
+  {id:'uthaymeen1', name:'الشيخ ابن عثيمين',        sub:'هيئة كبار العلماء'},
+  {id:'uthaymeen2', name:'الشيخ ابن عثيمين',        sub:'الموقع الرسمي'},
+  {id:'rabee',      name:'الشيخ ربيع المدخلي',      sub:'رحمه الله'},
+  {id:'ruhaily',    name:'الشيخ سليمان الرحيلي',    sub:'حفظه الله'},
+];
+const selectedSites=new Set(sites.map(s=>s.id));
+
+function buildSitesGrid(){
+  const g=document.getElementById('sitesGrid');
+  if(!g) return;
+  g.innerHTML=sites.map(s=>`
+    <label class="site-chip${selectedSites.has(s.id)?' selected':''}" id="chip-${s.id}">
+      <input type="checkbox" ${selectedSites.has(s.id)?'checked':''} onchange="toggleSite('${s.id}',this)" onclick="event.stopPropagation()">
+      <div class="chip-check">
+        <svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,6 5,9 10,3"/></svg>
+      </div>
+      <span class="site-chip-label">${s.name}<small>${s.sub}</small></span>
+    </label>`).join('');
+}
+function toggleSite(id,cb){
+  const c=document.getElementById('chip-'+id);
+  if(cb.checked){selectedSites.add(id);c.classList.add('selected');}
+  else{selectedSites.delete(id);c.classList.remove('selected');}
+}
+function selectAll(){sites.forEach(s=>{selectedSites.add(s.id);const c=document.getElementById('chip-'+s.id);c.classList.add('selected');c.querySelector('input').checked=true;});}
+function deselectAll(){sites.forEach(s=>{selectedSites.delete(s.id);const c=document.getElementById('chip-'+s.id);c.classList.remove('selected');c.querySelector('input').checked=false;});}
+
+function doSearch(){
+  const q=document.getElementById('searchInput').value.trim();
+  if(!q) return;
+  // trigger Google CSE programmatically
+  if(window.google && window.google.search && window.google.search.cse){
+    window.google.search.cse.element.getElement('gscResults').execute(q);
+  } else {
+    // fallback: reload CSE with query
+    const el=document.getElementById('gscResults');
+    el.innerHTML='';
+    const div=document.createElement('div');
+    div.className='gcse-searchresults-only';
+    div.setAttribute('data-query',q);
+    el.appendChild(div);
+    if(window.__gcse) window.__gcse.initializationCallback();
+  }
+  document.querySelector('.gcse-results-wrap').scrollIntoView({behavior:'smooth',block:'start'});
+}
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('mainNav');
+  if(nav.classList.contains('solid')) return;
+  nav.classList.toggle('scrolled', window.scrollY>60);
+});
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.getElementById('nav-'+id).classList.add('active');
+  const nav=document.getElementById('mainNav');
+  if(id==='athkar'){
+    nav.classList.add('solid');
+    nav.classList.remove('scrolled');
+    document.getElementById('moqadima-content').style.display='block';
+    document.getElementById('athkar-content').style.display='none';
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.getElementById('tab-moqadima').classList.add('active');
+  } else {
+    nav.classList.remove('solid');
+    if(window.scrollY<=60) nav.classList.remove('scrolled');
+  }
+  if(id==='search') buildSitesGrid();
+  window.scrollTo(0,0);
+}
+
+/* ===== TABS ===== */
+function showTab(key,btn){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if(key==='moqadima'){
+    document.getElementById('moqadima-content').style.display='block';
+    document.getElementById('athkar-content').style.display='none';
+  } else {
+    document.getElementById('moqadima-content').style.display='none';
+    document.getElementById('athkar-content').style.display='flex';
+    renderAthkar(key);
+  }
+}
+
+
+
+/* ===== ATHKAR ===== */
+const sabah=[
+  {text:"أَصْبَحْنا وَأَصْبَحَ المُلْكُ لله وَالحَمدُ لله، لا إلهَ إلا اللهُ وَحدَهُ لا شَريكَ لَهُ، لَهُ المُلكُ ولهُ الحَمْد، وهُوَ على كلّ شَيءٍ قدير، رَبِّ أسْأَلُكَ خَيرَ ما في هذا اليوم وَخَيرَ ما بَعْدَه، وأعوذُ بِكَ مِنْ شَرِّ ما في هذا اليوم وَشَرِّ ما بَعْدَه، رَبِّ أَعوذُ بِكَ مِنَ الْكَسَلِ وَسوءِ الْكِبَر، رَبِّ أَعوذُ بِكَ مِنْ عَذَابٍ في النَّارِ وَعَذَابٍ في القَبْر.",repeat:"مرة واحدة",source:"صحيح",count:1,fadl:""},
+  {text:"اللَّهُمَّ بِكَ أَصْبَحْنا وَبِكَ أَمْسَينا، وَبِكَ نَحْيا وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُور.",repeat:"مرة واحدة",source:"صحيح",count:1,fadl:""},
+  {text:"اللهمَّ أَنْتَ رَبِّي لا إلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنا عَبْدُكَ، وَأَنا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْت، أعوذُ بكَ مِنْ شَرِّ مَا صَنَعْت، أبوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ وَأَبوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لا يَغْفِرُ الذُّنوبَ إِلَّا أَنْتَ.",repeat:"مرة واحدة",source:"صحيح",count:1,fadl:"من قالها حين يصبح فمات من يومه دخل الجنة"},
+  {text:"اللَّهُمَّ فَاطِرَ السَّمَوَاتِ وَالأَرْضِ عَالِمَ الغَيْبِ وَالشَّهَادَةِ، رَبَّ كُلِّ شَيْءٍ وَمَلِيكَهُ. أَشْهَدُ أَن لا إله إلا أنتَ، أَعُوذُ بِكَ مِنْ شَرِّ نَفسي وَشَرِّ الشَّيْطَانِ وَشِرْكَهِ وَأَنْ أَقْتَرِفَ عَلَى نَفْسِي سُوءً أَوْ أَجْرَّهُ إِلَى مُسْلِمٍ.",repeat:"مرة واحدة",source:"صحيح",count:1,fadl:""},
+  {text:"بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ ﴿قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُنْ لَهُ كُفُواً أَحَدٌ﴾\nبِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ ﴿قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ۝ مِنْ شَرِّ مَا خَلَقَ ۝ وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝ وَمِنْ شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ۝ وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ﴾\nبِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ ﴿قُلْ أَعُوذُ بِرَبِّ النَّاسِ ۝ مَلِكِ النَّاسِ ۝ إِلَهِ النَّاسِ ۝ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ۝ مِنَ الْجِنَّةِ وَالنَّاسِ﴾",repeat:"ثلاث مرات",source:"حسن",count:3,fadl:"من قالها (الإخلاص والمعوذتين) حين يصبح كفته من كل شيء"},
+  {text:"اللَّهُمَّ إِنِّي أَصْبَحْتُ أَشْهَدُكَ، وَأُشْهِدُ حَمَلَةَ عَرْشِكَ، وَمَلَائِكَتَكَ، وَجَمِيعَ خَلْقِكَ، أَنَّكَ أَنْتَ اللهُ لَا إِلَهَ إِلَّا أَنْتَ، وَأَنَّ مُحَمَّداً عَبْدُكَ وَرَسُولُكَ.",repeat:"أربع مرات",source:"حسن بشواهده",count:4,fadl:"من قالها أربع مرات أعتقه الله من النار"},
+  {text:"بِاسْمِ اللهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ.",repeat:"ثلاث مرات",source:"صحيح",count:3,fadl:"من قالها حين يصبح لم تصبه فجأة بلاء حتى يمسي - ولم يضره شيء"},
+  {text:"رَضِيتُ بِاللهِ رَبَّاً وَبِالإِسْلَامِ دِيناً وَبِمُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ نَبِياً.",repeat:"مرة واحدة",source:"صحيح",count:1,fadl:"من قالها وجبت له الجنة"},
+  {text:"اللَّهُمَّ مَا أَصْبَحَ بِي مِنْ نِعْمَةٍ أَوْ بِأَحَدٍ مِنْ خَلْقِكَ، فَمِنْكَ وَحْدَكَ لَا شَرِيكَ لَكَ، لَكَ الْحَمْدُ وَلَكَ الشُّكْرُ.",repeat:"مرة واحدة",source:"حسن",count:1,fadl:"من قالها حين يصبح فقد أدى شكر يومه"},
+  {text:"اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَافِيَةَ فِي الدُّنْيَا وَالآخِرَةِ، اللهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي دِينِي وَدُنْيَايَ وَأَهْلِي وَمَالِي، اللهُمَّ اسْتُرْ عَوْرَاتِي وَآمِنْ رَوْعَاتِي، اللَّهُمَّ احْفَظْنِي مِنْ بَيْنِ يَدَيَّ وَمِنْ خَلْفِي وَعَنْ يَمِينِي وَعَنْ شِمَالِي، وَمِنْ فَوْقِي، وَأَعُوذُ بِعَظَمَتِكَ أَنْ أُغْتَالَ مِنْ تَحْتِي.",repeat:"مرة واحدة",source:"صحيح",count:1,fadl:""},
+  {text:"لَا إِلَهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.",repeat:"مرة واحدة",source:"صحيح",count:1,fadl:"من قالها حين يصبح كانت له عدل رقبة من ولد إسماعيل وكتبت له عشر حسنات، وحط عنه عشر سيئات، ورفع له عشر درجات وكان في حرز من الشيطان حتى يمسي"},
+  {text:"يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ، أَصْلِحْ لِي شَأْنِي كُلَّهُ وَلَا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ أَبَداً.",repeat:"مرة واحدة",source:"حسن",count:1,fadl:""},
+  {text:"أَعُوذُ بِاللَّهِ السَّمِيعِ الْعَلِيمِ مِنَ الشَّيْطَانِ الرَّجِيمِ\n﴿اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ وَلَا يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ﴾",repeat:"مرة واحدة",source:"صحيح",count:1,fadl:"من قالها حين يصبح أجير من الجن حتى يمسي"},
+  {text:"لَا إِلَهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ يُحْيِي وَيُمِيتُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.",repeat:"عشر مرات",source:"صحيح",count:10,fadl:"من قالها حين يصبح كتب الله له عشر حسنات ومحا عنه عشر سيئات، وكن له قدر عشر رقاب وأجاره الله من الشيطان"},
+  {text:"سُبْحَانَ اللهِ وَبِحَمْدِهِ عَدَدَ خَلْقِهِ، وَرِضا نَفْسِهِ، وَزِنَةَ عَرْشِهِ، وَمِدَادَ كَلِمَاتِهِ.",repeat:"ثلاث مرات",source:"صحيح",count:3,fadl:""},
+  {text:"أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلهِ رَبِّ الْعَالَمِينَ، اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَ هَذَا الْيَوْمِ فَتْحَهُ وَنَصْرَهُ وَنُورَهُ وَبَرَكَتَهُ وَهُدَاهُ، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِيهِ وَشَرِّ مَا بَعْدَهُ.",repeat:"مرة واحدة",source:"حسن",count:1,fadl:""},
+  {text:"اللهُمَّ عَافِنِي فِي بَدَنِي، اللهُمَّ عَافِنِي فِي سَمْعِي، اللهُمَّ عَافِنِي فِي بَصَرِي، لَا إِلَهَ إِلَّا أَنْتَ.\nاللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْكُفْرِ وَالْفَقْرِ، اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ عَذَابِ الْقَبْرِ، لَا إِلَهَ إِلَّا أَنْتَ.",repeat:"ثلاث مرات",source:"حسن",count:3,fadl:""},
+  {text:"أَصْبَحْنَا عَلَى فِطْرَةِ الإِسْلَامِ وَكَلِمَةِ الإِخْلَاصِ وَدِينِ نَبِيِّنَا مُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ وَعَلَى مِلَّةِ أَبِينَا إِبْرَاهِيمَ حَنِيفاً مُسْلِماً وَمَا كَانَ مِنَ الْمُشْرِكِينَ.",repeat:"مرة واحدة",source:"صحيح",count:1,fadl:""},
+  {text:"اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا وَرِزْقًا طَيِّبًا وَعَمَلًا مُتَقَبَّلًا.",repeat:"مرة واحدة",source:"صحيح",count:1,fadl:""},
+  {text:"حَسْبِيَ اللَّهُ لَا إِلَهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ.",repeat:"سبع مرات",source:"حسن",count:7,fadl:"من قالها حين يصبح وحين يمسي كفاه الله ما أهمه من أمر الدنيا والآخرة"},
+  {text:"أَسْتَغْفِرُ اللهَ.",repeat:"مئة مرة وكلما زاد كان أفضل",source:"صحيح",count:100,fadl:""},
+  {text:"سُبْحَانَ اللهِ.",repeat:"مئة مرة وكلما زاد كان أفضل",source:"حسن",count:100,fadl:"من قالها مئة مرة قبل طلوع الشمس وقبل غروبها كان أفضل من مئة بدنة"},
+  {text:"الْحَمْدُ لِلهِ.",repeat:"مئة مرة وكلما زاد كان أفضل",source:"حسن",count:100,fadl:"من قالها مئة مرة قبل طلوع الشمس وقبل غروبها كان أفضل من مئة فرس يحمل عليها في سبيل الله"},
+  {text:"اللهُ أَكْبَرُ.",repeat:"مئة مرة وكلما زاد كان أفضل",source:"حسن",count:100,fadl:"من قالها مئة مرة قبل طلوع الشمس وقبل غروبها كان أفضل من عتق مئة رقبة"},
+  {text:"لَا إِلَهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.",repeat:"مئة مرة وكلما زاد كان أفضل",source:"حسن",count:100,fadl:"من قالها مئة مرة قبل طلوع الشمس وقبل غروبها لم يجئ يوم القيامة أحد بعمل أفضل من عمله إلا من قال مثل قوله أو زاد عليه"},
+  {text:"سُبْحَانَ اللهِ وَبِحَمْدِهِ - أو - سُبْحَانَ اللهِ الْعَظِيمِ وَبِحَمْدِهِ.",repeat:"مئة مرة وكلما زاد كان أفضل",source:"صحيح",count:100,fadl:"من قالها مئة مرة حطت خطاياه وإن كانت مثل زبد البحر ولم يأت أحد يوم القيامة بأفضل مما جاء به إلا أحد قال مثل ما قال أو زاد عليه"},
+  {text:"اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ وَإِنَّكَ حَمِيدٌ مَجِيدٌ، اللَّهُمَّ بَارِكَ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ.",repeat:"عشر مرات",source:"صحيح",count:10,fadl:"من صلى على النبي ﷺ حين يصبح وحين يمسي عشراً أدركته شفاعته يوم القيامة"}
+];
+
+const masa=[
+  {text:"أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلهِ وَالْحَمْدُ لِلهِ، لَا إِلَهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، رَبِّ أَسْأَلُكَ خَيْرَ مَا فِي هَذِهِ اللَّيْلَةِ وَخَيْرَ مَا بَعْدَهَا، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِي هَذِهِ اللَّيْلَةِ وَشَرِّ مَا بَعْدَهَا، رَبِّ أَعُوذُ بِكَ مِنَ الْكَسَلِ وَسُوءِ الْكِبَرِ، رَبِّ أَعُوذُ بِكَ مِنْ عَذَابٍ فِي النَّارِ وَعَذَابٍ فِي الْقَبْرِ.",repeat:"مرة واحدة",source:"صحيح",count:1,fadl:""},
+  {text:"اللَّهُمَّ بِكَ أَمْسَيْنَا وَبِكَ أَصْبَحْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ الْمَصِيرُ.",repeat:"مرة واحدة",source:"صحيح",count:1,fadl:""},
+  {text:"اللهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ خَلَقْتَنِي وَأَنَا عَبْدُكَ وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ.",repeat:"مرة واحدة",source:"صحيح",count:1,fadl:"من قالها حين يمسي فمات من ليلته دخل الجنة"},
+  {text:"اللَّهُمَّ فَاطِرَ السَّمَوَاتِ وَالأَرْضِ عَالِمَ الغَيْبِ وَالشَّهَادَةِ رَبَّ كُلِّ شَيْءٍ وَمَلِيكَهُ أَشْهَدُ أَن لا إله إلا أنتَ أَعُوذُ بِكَ مِنْ شَرِّ نَفسي وَشَرِّ الشَّيْطَانِ وَشِرْكَهِ.",repeat:"مرة واحدة",source:"صحيح",count:1,fadl:""},
+  {text:"بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ ﴿قُلْ هُوَ اللَّهُ أَحَدٌ﴾ ﴿قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ﴾ ﴿قُلْ أَعُوذُ بِرَبِّ النَّاسِ﴾",repeat:"ثلاث مرات",source:"حسن",count:3,fadl:"من قالها (الإخلاص والمعوذتين) حين يمسي كفته من كل شيء"},
+  {text:"اللهُمَّ إِنِّي أَمْسَيْتُ أَشْهِدُكَ وَأَشْهِدُ حَمَلَةَ عَرْشِكَ وَمَلَائِكَتَكَ وَجَمِيعَ خَلْقِكَ أَنَّكَ أَنْتَ اللهُ لَا إِلَهَ إِلَّا أَنْتَ وَأَنَّ مُحَمَّداً عَبْدُكَ وَرَسُولُكَ.",repeat:"أربع مرات",source:"حسن بشواهده",count:4,fadl:"من قالها أربع مرات أعتقه الله من النار"},
+  {text:"بِاسْمِ اللهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ.",repeat:"ثلاث مرات",source:"صحيح",count:3,fadl:"من قالها حين يمسي لم تصبه فجأة بلاء حتى يصبح - ولم يضره شيء"},
+  {text:"رَضِيتُ بِاللهِ رَبَّاً وَبِالإِسْلَامِ دِيناً وَبِمُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ نَبِياً.",repeat:"مرة واحدة",source:"صحيح",count:1,fadl:"من قالها وجبت له الجنة"},
+  {text:"اللَّهُمَّ مَا أَمْسَى بِي مِنْ نِعْمَةٍ أَوْ بِأَحَدٍ مِنْ خَلْقِكَ فَمِنْكَ وَحْدَكَ لَا شَرِيكَ لَكَ لَكَ الْحَمْدُ وَلَكَ الشُّكْرُ.",repeat:"مرة واحدة",source:"حسن",count:1,fadl:"من قالها حين يمسي فقد أدى شكر ليلته"},
+  {text:"اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَافِيَةَ فِي الدُّنْيَا وَالآخِرَةِ اللهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي دِينِي وَدُنْيَايَ وَأَهْلِي وَمَالِي اللهُمَّ اسْتُرْ عَوْرَاتِي وَآمِنْ رَوْعَاتِي اللَّهُمَّ احْفَظْنِي مِنْ بَيْنِ يَدَيَّ وَمِنْ خَلْفِي وَعَنْ يَمِينِي وَعَنْ شِمَالِي وَمِنْ فَوْقِي وَأَعُوذُ بِعَظَمَتِكَ أَنْ أُغْتَالَ مِنْ تَحْتِي.",repeat:"مرة واحدة",source:"صحيح",count:1,fadl:""},
+  {text:"لَا إِلَهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.",repeat:"مرة واحدة",source:"صحيح",count:1,fadl:"من قالها حين يمسي كانت له عدل رقبة من ولد إسماعيل وكتبت له عشر حسنات وحط عنه عشر سيئات ورفع له عشر درجات وكان في حرز من الشيطان حتى يصبح"},
+  {text:"يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ أَصْلِحْ لِي شَأْنِي كُلَّهُ وَلَا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ أَبَداً.",repeat:"مرة واحدة",source:"حسن",count:1,fadl:""},
+  {text:"أَعُوذُ بِاللَّهِ السَّمِيعِ الْعَلِيمِ مِنَ الشَّيْطَانِ الرَّجِيمِ\n﴿اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ وَلَا يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ﴾",repeat:"مرة واحدة",source:"صحيح",count:1,fadl:"من قالها حين يمسي أجير من الجن حتى يصبح"},
+  {text:"لَا إِلَهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ يُحْيِي وَيُمِيتُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.",repeat:"عشر مرات",source:"صحيح",count:10,fadl:"من قالها حين يمسي كتب الله له عشر حسنات ومحا عنه عشر سيئات وكن له قدر عشر رقاب وأجاره الله من الشيطان"},
+  {text:"أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلهِ رَبِّ الْعَالَمِينَ اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَ هَذِهِ اللَّيْلَةِ فَتْحَهَا وَنَصْرَهَا وَنُورَهَا وَبَرَكَتَهَا وَهُدَاهَا وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِيهَا وَشَرِّ مَا بَعْدَهَا.",repeat:"مرة واحدة",source:"حسن",count:1,fadl:""},
+  {text:"اللهُمَّ عَافِنِي فِي بَدَنِي اللهُمَّ عَافِنِي فِي سَمْعِي اللهُمَّ عَافِنِي فِي بَصَرِي لَا إِلَهَ إِلَّا أَنْتَ.\nاللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْكُفْرِ وَالْفَقْرِ اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ عَذَابِ الْقَبْرِ لَا إِلَهَ إِلَّا أَنْتَ.",repeat:"ثلاث مرات",source:"حسن",count:3,fadl:""},
+  {text:"حَسْبِيَ اللَّهُ لَا إِلَهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ.",repeat:"سبع مرات",source:"حسن",count:7,fadl:"من قالها حين يصبح وحين يمسي كفاه الله ما أهمه من أمر الدنيا والآخرة"},
+  {text:"سُبْحَانَ اللهِ.",repeat:"مئة مرة وكلما زاد كان أفضل",source:"حسن",count:100,fadl:"من قالها مئة مرة قبل طلوع الشمس وقبل غروبها كان أفضل من مئة بدنة"},
+  {text:"الْحَمْدُ لِلهِ.",repeat:"مئة مرة وكلما زاد كان أفضل",source:"حسن",count:100,fadl:"من قالها مئة مرة قبل طلوع الشمس وقبل غروبها كان أفضل من مئة فرس يحمل عليها في سبيل الله"},
+  {text:"اللهُ أَكْبَرُ.",repeat:"مئة مرة وكلما زاد كان أفضل",source:"حسن",count:100,fadl:"من قالها مئة مرة قبل طلوع الشمس وقبل غروبها كان أفضل من عتق مئة رقبة"},
+  {text:"لَا إِلَهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.",repeat:"مئة مرة وكلما زاد كان أفضل",source:"حسن",count:100,fadl:"من قالها مئة مرة قبل طلوع الشمس وقبل غروبها لم يجئ يوم القيامة أحد بعمل أفضل من عمله إلا من قال مثل قوله أو زاد عليه"},
+  {text:"أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ.",repeat:"ثلاث مرات",source:"صحيح",count:3,fadl:"من قالها حين يمسي لم يضره شيء تلك الليلة"},
+  {text:"سُبْحَانَ اللهِ وَبِحَمْدِهِ - أو - سُبْحَانَ اللهِ الْعَظِيمِ وَبِحَمْدِهِ.",repeat:"مئة مرة وكلما زاد كان أفضل",source:"صحيح",count:100,fadl:"من قالها مئة مرة حطت خطاياه وإن كانت مثل زبد البحر ولم يأت أحد يوم القيامة بأفضل مما جاء به إلا أحد قال مثل ما قال أو زاد عليه"},
+  {text:"اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ وَإِنَّكَ حَمِيدٌ مَجِيدٌ اللَّهُمَّ بَارِكَ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ.",repeat:"عشر مرات",source:"صحيح",count:10,fadl:"من صلى على النبي ﷺ حين يمسي عشراً أدركته شفاعته يوم القيامة"}
+];
+
+const allData={sabah,masa};
+const counters={};
+
+function renderAthkar(key){
+  const list=allData[key];
+  const c=document.getElementById('athkar-content');
+  c.innerHTML=list.map((item,i)=>{
+    const ckey=key+'-'+i;
+    if(counters[ckey]===undefined) counters[ckey]=0;
+    const cur=counters[ckey], done=cur>=item.count;
+    return `<div class="athkar-card${done?' done-card':''}" id="card-${ckey}" onclick="handleTap('${ckey}',${i},'${key}')">
+      <span class="athkar-source">${item.source}</span>
+      <div class="athkar-text">${item.text.replace(/\n/g,'<br><br>')}</div>
+      ${item.fadl?`<div class="fadl">💡 ${item.fadl}</div>`:''}
+      <div class="athkar-footer">
+        <span class="repeat-badge">🔁 ${item.repeat}</span>
+        <div class="actions">
+          <span class="cnt-display" id="cnt-${ckey}">${cur}/${item.count}</span>
+          ${done?`<span class="done-badge">✅ تم</span>`:''}
+          <button class="cnt-reset" onclick="event.stopPropagation();resetCount('${ckey}',${i},'${key}')">↺</button>
+          <button class="copy-btn" id="copy-${ckey}" onclick="event.stopPropagation();copyText(${i},'${key}','${ckey}')">📋 نسخ</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function handleTap(ckey,i,key){
+  const item=allData[key][i];
+  if(counters[ckey]===undefined) counters[ckey]=0;
+  if(counters[ckey]>=item.count) return;
+  counters[ckey]++;
+  const cur=counters[ckey], done=cur>=item.count;
+  const numEl=document.getElementById('cnt-'+ckey);
+  if(numEl) numEl.textContent=cur+'/'+item.count;
+  const card=document.getElementById('card-'+ckey);
+  if(card&&done&&!card.querySelector('.done-badge')){
+    card.classList.add('done-card');
+    const actions=card.querySelector('.actions');
+    const badge=document.createElement('span');
+    badge.className='done-badge';badge.textContent='✅ تم';
+    actions.insertBefore(badge,actions.querySelector('.cnt-reset'));
+    setTimeout(()=>{
+      const next=document.getElementById('card-'+key+'-'+(i+1));
+      if(next) next.scrollIntoView({behavior:'smooth',block:'center'});
+    },700);
+  }
+}
+
+function resetCount(ckey,i,key){
+  counters[ckey]=0;
+  const numEl=document.getElementById('cnt-'+ckey);
+  if(numEl) numEl.textContent='0/'+allData[key][i].count;
+  const card=document.getElementById('card-'+ckey);
+  if(card){card.classList.remove('done-card');const b=card.querySelector('.done-badge');if(b)b.remove();}
+}
+
+function copyText(i,key,ckey){
+  navigator.clipboard.writeText(allData[key][i].text).then(()=>{
+    const btn=document.getElementById('copy-'+ckey);
+    if(btn){btn.textContent='✅ تم';btn.classList.add('copied');}
+    setTimeout(()=>{if(btn){btn.innerHTML='📋 نسخ';btn.classList.remove('copied');}},2000);
+  });
+}
+</script>
+</body>
+</html>
