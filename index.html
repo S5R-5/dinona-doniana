@@ -4,6 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ديننا دنيانا</title>
+<script>
+  window.__gcse = {
+    parsetags: 'explicit',
+    callback: function() {
+      if (window.google && window.google.search && window.google.search.cse) {
+        google.search.cse.element.render({
+          div: 'gscResults',
+          tag: 'searchresults-only',
+          elementName: 'gscResults'
+        });
+      }
+    }
+  };
+</script>
 <script async src="https://cse.google.com/cse.js?cx=41888e1cfaa844df8"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap');
@@ -250,18 +264,31 @@ function deselectAll(){sites.forEach(s=>{selectedSites.delete(s.id);const c=docu
 function doSearch(){
   const q=document.getElementById('searchInput').value.trim();
   if(!q) return;
-  // trigger Google CSE programmatically
   if(window.google && window.google.search && window.google.search.cse){
-    window.google.search.cse.element.getElement('gscResults').execute(q);
+    const element = window.google.search.cse.element.getElement('gscResults');
+    if(element && typeof element.execute === 'function'){
+      element.execute(q);
+    } else {
+      google.search.cse.element.render({
+        div: 'gscResults',
+        tag: 'searchresults-only',
+        elementName: 'gscResults'
+      });
+      const retry = window.google.search.cse.element.getElement('gscResults');
+      if(retry && typeof retry.execute === 'function'){
+        retry.execute(q);
+      }
+    }
   } else {
-    // fallback: reload CSE with query
     const el=document.getElementById('gscResults');
     el.innerHTML='';
     const div=document.createElement('div');
     div.className='gcse-searchresults-only';
     div.setAttribute('data-query',q);
     el.appendChild(div);
-    if(window.__gcse) window.__gcse.initializationCallback();
+    if(window.__gcse && typeof window.__gcse.callback === 'function'){
+      window.__gcse.callback();
+    }
   }
   document.querySelector('.gcse-results-wrap').scrollIntoView({behavior:'smooth',block:'start'});
 }
