@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة التحكم - ديننا دنيانا</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap');
+:root{--gold:#c9a84c;--gold-light:#e8c97a;--gd:#1a3a2a;--gm:#2d5a3d;--gl:#3d7a52;--cream:#faf6f0;--text:#1a1a1a;--muted:#555;--red:#e74c3c;--blue:#2980b9;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Tajawal',sans-serif;background:#f0f2f5;color:var(--text);}
+
+/* LOGIN */
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--gd),var(--gm));}
+.login-box{background:#fff;border-radius:20px;padding:3rem 2.5rem;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.2);text-align:center;}
+.login-logo{font-family:'Amiri',serif;font-size:2rem;color:var(--gd);margin-bottom:.3rem;}
+.login-sub{font-size:.85rem;color:var(--muted);margin-bottom:2rem;}
+.login-box input{width:100%;padding:.85rem 1rem;border:2px solid #e0e0e0;border-radius:10px;font-family:'Tajawal',sans-serif;font-size:1rem;margin-bottom:1rem;outline:none;transition:border .2s;}
+.login-box input:focus{border-color:var(--gm);}
+.login-btn{width:100%;background:var(--gm);color:#fff;border:none;padding:.9rem;border-radius:10px;font-family:'Tajawal',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:background .2s;}
+.login-btn:hover{background:var(--gl);}
+.login-err{color:var(--red);font-size:.85rem;margin-top:.5rem;display:none;}
+
+/* DASHBOARD */
+.dashboard{display:none;}
+.sidebar{width:260px;background:var(--gd);min-height:100vh;position:fixed;top:0;right:0;z-index:50;padding:1.5rem 0;}
+.sidebar-logo{font-family:'Amiri',serif;color:var(--gold);font-size:1.3rem;text-align:center;padding:0 1rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.1);}
+.sidebar-logo small{display:block;font-family:'Tajawal',sans-serif;color:rgba(255,255,255,.5);font-size:.72rem;margin-top:.2rem;}
+.nav-item{display:flex;align-items:center;gap:.8rem;padding:.85rem 1.5rem;color:rgba(255,255,255,.7);cursor:pointer;transition:all .2s;font-size:.92rem;border-right:3px solid transparent;}
+.nav-item:hover{background:rgba(255,255,255,.08);color:#fff;}
+.nav-item.active{background:rgba(255,255,255,.12);color:var(--gold-light);border-right-color:var(--gold);}
+.nav-item .icon{font-size:1.1rem;width:20px;text-align:center;}
+.logout-btn{margin:1rem 1.5rem 0;background:rgba(231,76,60,.15);color:#e74c3c;border:1px solid rgba(231,76,60,.3);padding:.7rem 1rem;border-radius:8px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:.88rem;width:calc(100% - 3rem);transition:all .2s;}
+.logout-btn:hover{background:var(--red);color:#fff;}
+
+.main{margin-right:260px;padding:2rem;}
+.topbar{background:#fff;border-radius:12px;padding:1rem 1.5rem;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.topbar h1{font-family:'Amiri',serif;font-size:1.5rem;color:var(--gd);}
+.topbar-info{font-size:.82rem;color:var(--muted);}
+
+/* SECTIONS */
+.section{display:none;}
+.section.active{display:block;}
+.card{background:#fff;border-radius:14px;padding:1.5rem;box-shadow:0 2px 10px rgba(0,0,0,.06);margin-bottom:1.5rem;}
+.card-title{font-family:'Amiri',serif;font-size:1.2rem;color:var(--gd);margin-bottom:1rem;padding-bottom:.7rem;border-bottom:2px solid var(--gold);}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:1.5rem;}
+.stat-card{background:#fff;border-radius:12px;padding:1.3rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06);border-top:3px solid var(--gold);}
+.stat-num{font-size:2rem;font-weight:700;color:var(--gd);}
+.stat-label{font-size:.8rem;color:var(--muted);margin-top:.3rem;}
+
+/* FORMS */
+.form-group{margin-bottom:1rem;}
+.form-group label{display:block;font-size:.88rem;color:var(--muted);margin-bottom:.4rem;font-weight:500;}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:.75rem 1rem;border:2px solid #e8e8e8;border-radius:8px;font-family:'Tajawal',sans-serif;font-size:.92rem;outline:none;transition:border .2s;}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--gm);}
+.form-group textarea{min-height:100px;resize:vertical;}
+
+/* BUTTONS */
+.btn{padding:.55rem 1.2rem;border:none;border-radius:8px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:.88rem;font-weight:600;transition:all .2s;}
+.btn-primary{background:var(--gm);color:#fff;}
+.btn-primary:hover{background:var(--gl);}
+.btn-danger{background:var(--red);color:#fff;}
+.btn-danger:hover{background:#c0392b;}
+.btn-gold{background:var(--gold);color:var(--gd);}
+.btn-gold:hover{background:var(--gold-light);}
+.btn-sm{padding:.35rem .8rem;font-size:.8rem;}
+
+/* TABLES */
+.table-wrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;}
+th{background:var(--gd);color:var(--gold-light);padding:.7rem 1rem;text-align:right;font-size:.85rem;}
+td{padding:.7rem 1rem;border-bottom:1px solid #f0f0f0;font-size:.85rem;vertical-align:top;}
+tr:hover td{background:#fafafa;}
+.badge{padding:.2rem .6rem;border-radius:10px;font-size:.75rem;font-weight:600;}
+.badge-green{background:#e8f5e9;color:#2e7d32;}
+.badge-gold{background:#fff8e1;color:#f57f17;}
+
+/* ATHKAR LIST */
+.athkar-item{background:#fafafa;border-radius:10px;padding:1rem;margin-bottom:.8rem;border-right:3px solid var(--gold);}
+.athkar-item-text{font-family:'Amiri',serif;font-size:.95rem;margin-bottom:.5rem;line-height:1.8;}
+.athkar-item-meta{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;}
+.athkar-actions{display:flex;gap:.5rem;margin-top:.6rem;}
+
+/* SITES LIST */
+.site-item{display:flex;align-items:center;justify-content:space-between;padding:.8rem 1rem;border:1px solid #eee;border-radius:8px;margin-bottom:.6rem;}
+.site-item-info{flex:1;}
+.site-item-name{font-weight:600;font-size:.9rem;}
+.site-item-url{font-size:.75rem;color:var(--muted);}
+
+/* HERO EDITOR */
+.color-row{display:flex;gap:1rem;align-items:center;}
+.color-preview{width:40px;height:40px;border-radius:8px;border:2px solid #ddd;}
+
+.success-toast{position:fixed;top:1.5rem;left:50%;transform:translateX(-50%);background:var(--gm);color:#fff;padding:.7rem 1.5rem;border-radius:10px;font-size:.88rem;z-index:999;display:none;box-shadow:0 4px 15px rgba(0,0,0,.2);}
+</style>
+</head>
+<body>
+
+<div class="success-toast" id="toast">✅ تم الحفظ بنجاح</div>
+
+<!-- LOGIN -->
+<div class="login-wrap" id="loginWrap">
+  <div class="login-box">
+    <div class="login-logo">ديننا دنيانا</div>
+    <div class="login-sub">لوحة تحكم المشرف</div>
+    <input type="password" id="passInput" placeholder="كلمة المرور" onkeydown="if(event.key==='Enter') login()">
+    <button class="login-btn" onclick="login()">دخول</button>
+    <div class="login-err" id="loginErr">❌ كلمة المرور غير صحيحة</div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      ديننا دنيانا
+      <small>لوحة التحكم</small>
+    </div>
+    <div class="nav-item active" onclick="showSection('overview')"><span class="icon">📊</span> نظرة عامة</div>
+    <div class="nav-item" onclick="showSection('athkar-sabah')"><span class="icon">🌅</span> أذكار الصباح</div>
+    <div class="nav-item" onclick="showSection('athkar-masa')"><span class="icon">🌙</span> أذكار المساء</div>
+    <div class="nav-item" onclick="showSection('moqadima')"><span class="icon">📖</span> مقدمة الأذكار</div>
+    <div class="nav-item" onclick="showSection('sites')"><span class="icon">🔍</span> مواقع البحث</div>
+    <div class="nav-item" onclick="showSection('hero')"><span class="icon">🏠</span> الصفحة الرئيسية</div>
+    <button class="logout-btn" onclick="logout()">🚪 تسجيل الخروج</button>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <h1 id="sectionTitle">نظرة عامة</h1>
+      <div class="topbar-info">مرحباً بك في لوحة التحكم 👋</div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div class="section active" id="sec-overview">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num" id="stat-sabah">26</div>
+          <div class="stat-label">أذكار الصباح</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="stat-masa">24</div>
+          <div class="stat-label">أذكار المساء</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">10</div>
+          <div class="stat-label">مواقع البحث</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3</div>
+          <div class="stat-label">أقسام الموقع</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">⚡ إجراءات سريعة</div>
+        <div style="display:flex;gap:.8rem;flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="showSection('athkar-sabah')">✏️ تعديل أذكار الصباح</button>
+          <button class="btn btn-primary" onclick="showSection('athkar-masa')">✏️ تعديل أذكار المساء</button>
+          <button class="btn btn-gold" onclick="showSection('sites')">🔍 إدارة مواقع البحث</button>
+          <button class="btn btn-gold" onclick="showSection('hero')">🏠 تعديل الرئيسية</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ATHKAR SABAH -->
+    <div class="section" id="sec-athkar-sabah">
+      <div class="card">
+        <div class="card-title">➕ إضافة ذكر جديد للصباح</div>
+        <div class="form-group"><label>نص الذكر</label><textarea id="new-sabah-text" placeholder="اكتب نص الذكر هنا..."></textarea></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;">
+          <div class="form-group"><label>عدد التكرار</label><input type="number" id="new-sabah-count" value="1" min="1"></div>
+          <div class="form-group"><label>التكرار (نص)</label><input id="new-sabah-repeat" placeholder="مثال: ثلاث مرات"></div>
+          <div class="form-group"><label>درجة الحديث</label><select id="new-sabah-source"><option>صحيح</option><option>حسن</option><option>حسن بشواهده</option></select></div>
+        </div>
+        <div class="form-group"><label>فضل الذكر (اختياري)</label><input id="new-sabah-fadl" placeholder="فضل هذا الذكر..."></div>
+        <button class="btn btn-primary" onclick="addAthkar('sabah')">➕ إضافة الذكر</button>
+      </div>
+      <div class="card">
+        <div class="card-title">📋 قائمة أذكار الصباح</div>
+        <div id="sabah-list"></div>
+      </div>
+    </div>
+
+    <!-- ATHKAR MASA -->
+    <div class="section" id="sec-athkar-masa">
+      <div class="card">
+        <div class="card-title">➕ إضافة ذكر جديد للمساء</div>
+        <div class="form-group"><label>نص الذكر</label><textarea id="new-masa-text" placeholder="اكتب نص الذكر هنا..."></textarea></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;">
+          <div class="form-group"><label>عدد التكرار</label><input type="number" id="new-masa-count" value="1" min="1"></div>
+          <div class="form-group"><label>التكرار (نص)</label><input id="new-masa-repeat" placeholder="مثال: ثلاث مرات"></div>
+          <div class="form-group"><label>درجة الحديث</label><select id="new-masa-source"><option>صحيح</option><option>حسن</option><option>حسن بشواهده</option></select></div>
+        </div>
+        <div class="form-group"><label>فضل الذكر (اختياري)</label><input id="new-masa-fadl" placeholder="فضل هذا الذكر..."></div>
+        <button class="btn btn-primary" onclick="addAthkar('masa')">➕ إضافة الذكر</button>
+      </div>
+      <div class="card">
+        <div class="card-title">📋 قائمة أذكار المساء</div>
+        <div id="masa-list"></div>
+      </div>
+    </div>
+
+    <!-- MOQADIMA -->
+    <div class="section" id="sec-moqadima">
+      <div class="card">
+        <div class="card-title">📖 تعديل مقدمة الأذكار</div>
+        <div class="form-group"><label>نص المقدمة</label><textarea id="moqadima-text" style="min-height:300px;font-family:'Amiri',serif;font-size:1rem;line-height:2;"></textarea></div>
+        <button class="btn btn-primary" onclick="saveMoqadima()">💾 حفظ المقدمة</button>
+      </div>
+    </div>
+
+    <!-- SITES -->
+    <div class="section" id="sec-sites">
+      <div class="card">
+        <div class="card-title">➕ إضافة موقع جديد</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+          <div class="form-group"><label>اسم الموقع / الشيخ</label><input id="new-site-name" placeholder="مثال: الشيخ فركوس"></div>
+          <div class="form-group"><label>الوصف</label><input id="new-site-sub" placeholder="مثال: حفظه الله"></div>
+          <div class="form-group"><label>رابط البحث</label><input id="new-site-search" placeholder="https://example.com/?s="></div>
+        </div>
+        <button class="btn btn-primary" onclick="addSite()">➕ إضافة الموقع</button>
+      </div>
+      <div class="card">
+        <div class="card-title">📋 قائمة مواقع البحث</div>
+        <div id="sites-list"></div>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <div class="section" id="sec-hero">
+      <div class="card">
+        <div class="card-title">🏠 تعديل الصفحة الرئيسية</div>
+        <div class="form-group"><label>البسملة</label><input id="hero-bism" value="بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ"></div>
+        <div class="form-group"><label>عنوان الموقع</label><input id="hero-title" value="ديننا دنيانا"></div>
+        <div class="form-group"><label>الوصف</label><input id="hero-sub" value="موقعك الإسلامي للأذكار والبحث العلمي"></div>
+        <div class="form-group"><label>الآية القرآنية</label><input id="hero-ayah" value="﴿ وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا ﴾"></div>
+        <div class="form-group"><label>مرجع الآية</label><input id="hero-ref" value="سورة الطلاق - آية 2"></div>
+        <button class="btn btn-primary" onclick="saveHero()">💾 حفظ التغييرات</button>
+      </div>
+      <div class="card">
+        <div class="card-title">📝 وصف بطاقات الخدمات</div>
+        <div class="form-group"><label>وصف بطاقة الأذكار</label><input id="card-athkar" value="أذكار الصباح والمساء الكاملة من تطبيق الشيخ رسلان مع عداد لكل ذكر"></div>
+        <div class="form-group"><label>وصف بطاقة البحث</label><input id="card-search" value="ابحث في مواقع كبار العلماء دفعة واحدة"></div>
+        <button class="btn btn-primary" onclick="saveCards()">💾 حفظ البطاقات</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ===== AUTH ===== */
+const PASS = 'Abdo2005';
+function login(){
+  const v=document.getElementById('passInput').value;
+  if(v===PASS){
+    document.getElementById('loginWrap').style.display='none';
+    document.getElementById('dashboard').style.display='block';
+    initDashboard();
+  } else {
+    document.getElementById('loginErr').style.display='block';
+    setTimeout(()=>document.getElementById('loginErr').style.display='none',2000);
+  }
+}
+function logout(){
+  document.getElementById('dashboard').style.display='none';
+  document.getElementById('loginWrap').style.display='flex';
+  document.getElementById('passInput').value='';
+}
+
+/* ===== NAV ===== */
+const titles={
+  'overview':'نظرة عامة',
+  'athkar-sabah':'أذكار الصباح',
+  'athkar-masa':'أذكار المساء',
+  'moqadima':'مقدمة الأذكار',
+  'sites':'مواقع البحث',
+  'hero':'الصفحة الرئيسية'
+};
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>{
+    if(n.textContent.trim().includes(titles[id]?.slice(0,4)||'')) n.classList.add('active');
+  });
+  document.querySelectorAll('.nav-item').forEach(n=>{
+    if(n.getAttribute('onclick')===`showSection('${id}')`) n.classList.add('active');
+  });
+  document.getElementById('sectionTitle').textContent=titles[id]||id;
+}
+
+function showToast(){
+  const t=document.getElementById('toast');
+  t.style.display='block';
+  setTimeout(()=>t.style.display='none',2500);
+}
+
+/* ===== DATA ===== */
+let sabahData=[], masaData=[], sitesData=[];
+
+function initDashboard(){
+  sabahData=JSON.parse(localStorage.getItem('sabah')||'[]');
+  masaData=JSON.parse(localStorage.getItem('masa')||'[]');
+  sitesData=JSON.parse(localStorage.getItem('sites')||JSON.stringify(defaultSites()));
+  renderAthkarList('sabah');
+  renderAthkarList('masa');
+  renderSites();
+  loadMoqadima();
+  document.getElementById('stat-sabah').textContent=sabahData.length;
+  document.getElementById('stat-masa').textContent=masaData.length;
+}
+
+function defaultSites(){
+  return [
+    {id:'ferkous',name:'الشيخ فركوس',sub:'حفظه الله',search:'http://ferkous.app/?s='},
+    {id:'badr',name:'الشيخ عبد الرزاق البدر',sub:'حفظه الله',search:'https://al-badr.net/?s='},
+    {id:'rslan',name:'الشيخ رسلان',sub:'حفظه الله',search:'https://www.rslan.com/?s='},
+    {id:'fawzan1',name:'الشيخ الفوزان',sub:'هيئة كبار العلماء',search:'https://dralfawzann.com/?s='},
+    {id:'fawzan2',name:'الشيخ الفوزان',sub:'الموقع الرسمي',search:'http://alfawzan.af.org.sa/ar/search?q='},
+    {id:'binbaz',name:'الشيخ ابن باز',sub:'رحمه الله',search:'https://binbaz.org.sa/search?q='},
+    {id:'uthaymeen1',name:'الشيخ ابن عثيمين',sub:'هيئة كبار العلماء',search:'https://aluthaymeen.net/?s='},
+    {id:'uthaymeen2',name:'الشيخ ابن عثيمين',sub:'الموقع الرسمي',search:'https://binothaimeen.net/search?query='},
+    {id:'rabee',name:'الشيخ ربيع المدخلي',sub:'رحمه الله',search:'https://rabee.net/?s='},
+    {id:'ruhaily',name:'الشيخ سليمان الرحيلي',sub:'حفظه الله',search:'https://www.sualruhaily.com/?s='},
+  ];
+}
+
+/* ===== ATHKAR ===== */
+function renderAthkarList(type){
+  const data = type==='sabah'?sabahData:masaData;
+  const el=document.getElementById(type+'-list');
+  if(!data.length){el.innerHTML='<p style="color:var(--muted);text-align:center;padding:1rem;">لا توجد أذكار مضافة بعد</p>';return;}
+  el.innerHTML=data.map((a,i)=>`
+    <div class="athkar-item">
+      <div class="athkar-item-text">${a.text.substring(0,120)}${a.text.length>120?'...':''}</div>
+      <div class="athkar-item-meta">
+        <span class="badge badge-green">${a.source}</span>
+        <span class="badge badge-gold">🔁 ${a.repeat}</span>
+      </div>
+      ${a.fadl?`<div style="font-size:.78rem;color:var(--muted);margin-top:.4rem;">💡 ${a.fadl}</div>`:''}
+      <div class="athkar-actions">
+        <button class="btn btn-danger btn-sm" onclick="deleteAthkar('${type}',${i})">🗑️ حذف</button>
+        <button class="btn btn-gold btn-sm" onclick="editAthkar('${type}',${i})">✏️ تعديل</button>
+      </div>
+    </div>`).join('');
+}
+
+function addAthkar(type){
+  const text=document.getElementById(`new-${type}-text`).value.trim();
+  if(!text){alert('يرجى كتابة نص الذكر');return;}
+  const item={
+    text,
+    count:parseInt(document.getElementById(`new-${type}-count`).value)||1,
+    repeat:document.getElementById(`new-${type}-repeat`).value||'مرة واحدة',
+    source:document.getElementById(`new-${type}-source`).value,
+    fadl:document.getElementById(`new-${type}-fadl`).value
+  };
+  if(type==='sabah') sabahData.push(item);
+  else masaData.push(item);
+  saveAthkar(type);
+  renderAthkarList(type);
+  document.getElementById(`new-${type}-text`).value='';
+  document.getElementById(`new-${type}-fadl`).value='';
+  showToast();
+}
+
+function deleteAthkar(type,i){
+  if(!confirm('هل تريد حذف هذا الذكر؟')) return;
+  if(type==='sabah') sabahData.splice(i,1);
+  else masaData.splice(i,1);
+  saveAthkar(type);
+  renderAthkarList(type);
+  showToast();
+}
+
+function editAthkar(type,i){
+  const data=type==='sabah'?sabahData:masaData;
+  const a=data[i];
+  const newText=prompt('تعديل نص الذكر:',a.text);
+  if(newText===null) return;
+  a.text=newText;
+  saveAthkar(type);
+  renderAthkarList(type);
+  showToast();
+}
+
+function saveAthkar(type){
+  localStorage.setItem(type, JSON.stringify(type==='sabah'?sabahData:masaData));
+  document.getElementById('stat-'+type).textContent=(type==='sabah'?sabahData:masaData).length;
+}
+
+/* ===== MOQADIMA ===== */
+function loadMoqadima(){
+  const saved=localStorage.getItem('moqadima');
+  if(saved) document.getElementById('moqadima-text').value=saved;
+}
+function saveMoqadima(){
+  localStorage.setItem('moqadima',document.getElementById('moqadima-text').value);
+  showToast();
+}
+
+/* ===== SITES ===== */
+function renderSites(){
+  const el=document.getElementById('sites-list');
+  el.innerHTML=sitesData.map((s,i)=>`
+    <div class="site-item">
+      <div class="site-item-info">
+        <div class="site-item-name">📖 ${s.name} <span style="font-size:.75rem;color:var(--muted);">${s.sub}</span></div>
+        <div class="site-item-url">${s.search}</div>
+      </div>
+      <div style="display:flex;gap:.5rem;">
+        <button class="btn btn-danger btn-sm" onclick="deleteSite(${i})">🗑️</button>
+      </div>
+    </div>`).join('');
+}
+
+function addSite(){
+  const name=document.getElementById('new-site-name').value.trim();
+  const sub=document.getElementById('new-site-sub').value.trim();
+  const search=document.getElementById('new-site-search').value.trim();
+  if(!name||!search){alert('يرجى ملء الحقول المطلوبة');return;}
+  sitesData.push({id:'site'+Date.now(),name,sub,search});
+  localStorage.setItem('sites',JSON.stringify(sitesData));
+  renderSites();
+  document.getElementById('new-site-name').value='';
+  document.getElementById('new-site-sub').value='';
+  document.getElementById('new-site-search').value='';
+  showToast();
+}
+
+function deleteSite(i){
+  if(!confirm('هل تريد حذف هذا الموقع؟')) return;
+  sitesData.splice(i,1);
+  localStorage.setItem('sites',JSON.stringify(sitesData));
+  renderSites();
+  showToast();
+}
+
+/* ===== HERO ===== */
+function saveHero(){
+  localStorage.setItem('hero',JSON.stringify({
+    bism:document.getElementById('hero-bism').value,
+    title:document.getElementById('hero-title').value,
+    sub:document.getElementById('hero-sub').value,
+    ayah:document.getElementById('hero-ayah').value,
+    ref:document.getElementById('hero-ref').value,
+  }));
+  showToast();
+}
+function saveCards(){
+  localStorage.setItem('cards',JSON.stringify({
+    athkar:document.getElementById('card-athkar').value,
+    search:document.getElementById('card-search').value,
+  }));
+  showToast();
+}
+
+// load saved hero on init
+window.addEventListener('load',()=>{
+  const h=JSON.parse(localStorage.getItem('hero')||'{}');
+  if(h.bism) document.getElementById('hero-bism').value=h.bism;
+  if(h.title) document.getElementById('hero-title').value=h.title;
+  if(h.sub) document.getElementById('hero-sub').value=h.sub;
+  if(h.ayah) document.getElementById('hero-ayah').value=h.ayah;
+  if(h.ref) document.getElementById('hero-ref').value=h.ref;
+  const c=JSON.parse(localStorage.getItem('cards')||'{}');
+  if(c.athkar) document.getElementById('card-athkar').value=c.athkar;
+  if(c.search) document.getElementById('card-search').value=c.search;
+});
+</script>
+</body>
+</html>
